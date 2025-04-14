@@ -83,10 +83,7 @@ public class Main {
 
 
     private static void inputNumber() {
-        if (isNull(board)){
-            System.out.println("O jogo ainda não foi iniciado iniciado");
-            return;
-        }
+        if (VerificaTabuleiroIniciado()) return;
 
         System.out.println("Informe a coluna que em que o número será inserido");
         var col = runUntilGetValidNumber(0, 8);
@@ -100,10 +97,7 @@ public class Main {
     }
 
     private static void removeNumber() {
-        if (isNull(board)){
-            System.out.println("O jogo ainda não foi iniciado iniciado");
-            return;
-        }
+        if (VerificaTabuleiroIniciado()) return;
 
         System.out.println("Informe a coluna que em que o número será inserido");
         var col = runUntilGetValidNumber(0, 8);
@@ -114,11 +108,16 @@ public class Main {
         }
     }
 
-    private static void showCurrentGame() {
+    private static boolean VerificaTabuleiroIniciado() {
         if (isNull(board)){
             System.out.println("O jogo ainda não foi iniciado iniciado");
-            return;
+            return true;
         }
+        return false;
+    }
+
+    private static void showCurrentGame() {
+        if (VerificaTabuleiroIniciado()) return;
 
         var args = new Object[81];
         var argPos = 0;
@@ -132,10 +131,7 @@ public class Main {
     }
 
     private static void showGameStatus() {
-        if (isNull(board)){
-            System.out.println("O jogo ainda não foi iniciado iniciado");
-            return;
-        }
+        if (VerificaTabuleiroIniciado()) return;
 
         System.out.printf("O jogo atualmente se encontra no status %s\n", board.getStatus().getLabel());
         if(board.hasErrors()){
@@ -146,10 +142,7 @@ public class Main {
     }
 
     private static void clearGame() {
-        if (isNull(board)){
-            System.out.println("O jogo ainda não foi iniciado iniciado");
-            return;
-        }
+        if (VerificaTabuleiroIniciado()) return;
 
         System.out.println("Tem certeza que deseja limpar seu jogo e perder todo seu progresso?");
         var confirm = scanner.next();
@@ -164,10 +157,7 @@ public class Main {
     }
 
     private static void finishGame() {
-        if (isNull(board)){
-            System.out.println("O jogo ainda não foi iniciado iniciado");
-            return;
-        }
+        if (VerificaTabuleiroIniciado()) return;
 
         if (board.gameIsFinished()){
             System.out.println("Parabéns você concluiu o jogo");
